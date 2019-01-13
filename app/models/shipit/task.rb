@@ -228,6 +228,8 @@ module Shipit
 
     def title
       definition.render_title(env)
+    rescue KeyError
+      'This task cannot be shown due to an incorrect variable name. Check your shipit.yml file'
     end
 
     def author
