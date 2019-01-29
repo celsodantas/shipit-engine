@@ -1,4 +1,6 @@
-<% subscribe events_path(channels: ["stack.#{@stack.id}"]), '.pr-list', '.header' %>
+<% if !ENV['PUBSUB_EVENTS_DISABLED'] %>
+  <% subscribe events_path(channels: ["stack.#{@stack.id}"]), '.pr-list', '.header' %>
+<% end -%>
 
 <%= render partial: 'shipit/stacks/header', locals: { stack: @stack } %>
 

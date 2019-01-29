@@ -3,7 +3,11 @@ Shipit::Engine.routes.draw do
   sha_format = /[\da-f]{6,40}/
   root to: 'stacks#index'
 
-  mount Pubsubstub::StreamAction.new, at: "/events", as: :events
+  unless ENV['PUBSUB_EVENTS_DISABLED']
+    mount Pubsubstub::StreamAction.new, at: "/events", as: :events
+  else
+    puts 'Disabling PubSub Stream Events'
+  end
 
   # Robots
   get '/status/version' => 'status#version', as: :version

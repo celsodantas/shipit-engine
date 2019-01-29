@@ -1,4 +1,6 @@
-<% subscribe events_path(channels: ["stack.#{@stack.id}"]), '#layout-content' %>
+<% if !ENV['PUBSUB_EVENTS_DISABLED'] %>
+  <% subscribe events_path(channels: ["stack.#{@stack.id}"]), '#layout-content' %>
+<% end -%>
 
 <%= render partial: 'shipit/stacks/header', locals: {stack: @stack} %>
 <%= render partial: 'shipit/stacks/banners', locals: {stack: @stack} %>
